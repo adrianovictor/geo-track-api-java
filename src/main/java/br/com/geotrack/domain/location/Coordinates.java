@@ -1,9 +1,8 @@
 package br.com.geotrack.domain.location;
 
+import br.com.geotrack.domain.shared.DomainValidationException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
-import br.com.geotrack.domain.shared.DomainValidationException;
 
 public record Coordinates(BigDecimal latitude, BigDecimal longitude) {
 

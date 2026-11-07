@@ -2,10 +2,7 @@ package br.com.geotrack.domain.vehicle;
 
 import java.util.Arrays;
 
-import br.com.geotrack.domain.shared.InvalidStatusTransitionException;
-
 public enum VehicleStatus {
-
     ACTIVE(1),
     INACTIVE(2),
     BLOCKED(3),
@@ -36,7 +33,7 @@ public enum VehicleStatus {
         if (isFinal()) {
             throw InvalidStatusTransitionException.of(this, target);
         }
-        
+
         return target;
     }
 }

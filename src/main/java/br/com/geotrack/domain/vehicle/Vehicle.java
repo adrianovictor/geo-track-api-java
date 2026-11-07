@@ -3,12 +3,10 @@ package br.com.geotrack.domain.vehicle;
 import static br.com.geotrack.domain.shared.Guard.requireNonNull;
 import static br.com.geotrack.domain.shared.Guard.requireText;
 
+import br.com.geotrack.domain.shared.DomainValidationException;
 import java.time.Instant;
 import java.time.Year;
 import java.util.UUID;
-
-import br.com.geotrack.domain.shared.DomainValidationException;
-import br.com.geotrack.domain.shared.InvalidStatusTransitionException;
 
 public final class Vehicle {
 
@@ -94,7 +92,7 @@ public final class Vehicle {
         this.brand = requireText(brand, "brand", TEXT_MAX_LENGTH);
         this.year = validateYear(year);
         touch();
-    }    
+    }
 
     public void activate() {
         changeStatus(VehicleStatus.ACTIVE);
@@ -127,7 +125,7 @@ public final class Vehicle {
         touch();
     }
 
-private void touch() {
+    private void touch() {
         updatedAt = Instant.now();
     }
 
@@ -182,5 +180,5 @@ private void touch() {
 
     public Instant updatedAt() {
         return updatedAt;
-    }    
+    }
 }

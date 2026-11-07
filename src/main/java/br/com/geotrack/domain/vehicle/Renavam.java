@@ -38,5 +38,5 @@ public record Renavam(String value) {
     @Override
     public String toString() {
         return value;
-    }    
+    }
 }

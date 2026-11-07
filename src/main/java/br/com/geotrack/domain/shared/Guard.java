@@ -1,7 +1,7 @@
 package br.com.geotrack.domain.shared;
 
 public final class Guard {
-    
+
     private Guard() {}
 
     public static String requireText(String value, String field, int maxLenght) {
@@ -11,7 +11,8 @@ public final class Guard {
 
         var trimmed = value.strip();
         if (trimmed.length() > maxLenght) {
-            throw new DomainValidationException(field, "O campo %s deve ter no máximo %d caracteres".formatted(field, maxLenght));
+            throw new DomainValidationException(
+                    field, "O campo %s deve ter no máximo %d caracteres".formatted(field, maxLenght));
         }
 
         return trimmed;

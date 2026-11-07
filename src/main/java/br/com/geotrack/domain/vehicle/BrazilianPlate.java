@@ -1,12 +1,11 @@
 package br.com.geotrack.domain.vehicle;
 
+import br.com.geotrack.domain.shared.DomainValidationException;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
-import br.com.geotrack.domain.shared.DomainValidationException;
-
 public record BrazilianPlate(String value) {
- 
+
     private static final Pattern OLD_FORMAT = Pattern.compile("^[A-Z]{3}[0-9]{4}$");
     private static final Pattern MERCOSUL_FORMAT = Pattern.compile("^[A-Z]{3}[0-9][A-Z][0-9]{2}$");
 
@@ -16,8 +15,10 @@ public record BrazilianPlate(String value) {
         }
 
         value = normalize(value);
-        if (!OLD_FORMAT.matcher(value).matches() && !MERCOSUL_FORMAT.matcher(value).matches()) {
-            throw new DomainValidationException("plate", "A placa '%s' não é uma placa brasileira válida.".formatted(value));
+        if (!OLD_FORMAT.matcher(value).matches()
+                && !MERCOSUL_FORMAT.matcher(value).matches()) {
+            throw new DomainValidationException(
+                    "plate", "A placa '%s' não é uma placa brasileira válida.".formatted(value));
         }
     }
 
@@ -29,7 +30,7 @@ public record BrazilianPlate(String value) {
         return MERCOSUL_FORMAT.matcher(value).matches();
     }
 
-    @Override 
+    @Override
     public String toString() {
         return value;
     }
