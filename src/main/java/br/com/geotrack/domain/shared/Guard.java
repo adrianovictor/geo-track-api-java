@@ -4,15 +4,15 @@ public final class Guard {
 
     private Guard() {}
 
-    public static String requireText(String value, String field, int maxLenght) {
+    public static String requireText(String value, String field, int maxLength) {
         if (value == null || value.isBlank()) {
             throw new DomainValidationException(field, "O campo %s é obrigatório".formatted(field));
         }
 
         var trimmed = value.strip();
-        if (trimmed.length() > maxLenght) {
+        if (trimmed.length() > maxLength) {
             throw new DomainValidationException(
-                    field, "O campo %s deve ter no máximo %d caracteres".formatted(field, maxLenght));
+                    field, "O campo %s deve ter no máximo %d caracteres".formatted(field, maxLength));
         }
 
         return trimmed;

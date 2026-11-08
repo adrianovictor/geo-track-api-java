@@ -115,11 +115,11 @@ public final class Vehicle {
         return status.isFinal();
     }
 
-    /** A regra da transição vem do VehicleSdo veículo. */
+    /** A regra da transição fica no VehicleStatus; o veículo só aplica o resultado. */
     private void changeStatus(VehicleStatus target) {
         var next = status.transitionTo(target);
         if (next == status) {
-            return; // idempotente: repetir da
+            return; // idempotente: repetir a transição não altera o veículo
         }
         status = next;
         touch();

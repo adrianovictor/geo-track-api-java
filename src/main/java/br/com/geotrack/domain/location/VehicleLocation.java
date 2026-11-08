@@ -28,8 +28,8 @@ public record VehicleLocation(
         requireNonNull(vehicleId, "vehicleId");
         requireNonNull(positionId, "positionId");
         requireNonNull(coordinates, "coordinates");
-        requireNonNull(recordedAt, "date");
-        requireNonNull(recordedAtUtc, "dateUtc");
+        requireNonNull(recordedAt, "recordedAt");
+        requireNonNull(recordedAtUtc, "recordedAtUtc");
         requireNonNull(createdAt, "createdAt");
     }
 

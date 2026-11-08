@@ -9,7 +9,7 @@ public class DomainValidationException extends DomainException {
         this.field = field;
     }
 
-    public String Field() {
+    public String field() {
         return field;
     }
 }
