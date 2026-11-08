@@ -100,7 +100,7 @@ src/main/resources/db/changelog
 ./mvnw spotless:apply
 ```
 
-São 58 testes de domínio, rodando em poucos segundos, sem banco nem container. O relatório de cobertura fica em `target/site/jacoco/index.html`.
+São 61 testes de domínio, rodando em poucos segundos, sem banco nem container. O relatório de cobertura fica em `target/site/jacoco/index.html`.
 
 Para subir a aplicação com um PostgreSQL descartável (precisa do Docker):
 

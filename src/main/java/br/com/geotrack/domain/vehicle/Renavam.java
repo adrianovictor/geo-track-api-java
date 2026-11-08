@@ -9,7 +9,7 @@ public record Renavam(String value) {
 
     public Renavam {
         if (value == null || value.isBlank()) {
-            throw new IllegalArgumentException("O valor do RENAVAM não pode ser nulo ou vazio");
+            throw new DomainValidationException("renavam", "O RENAVAM é obrigatório.");
         }
 
         value = value.strip();

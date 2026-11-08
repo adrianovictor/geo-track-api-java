@@ -6,6 +6,7 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import br.com.geotrack.domain.shared.DomainValidationException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 class RenavamTest {
@@ -27,6 +28,18 @@ class RenavamTest {
         assertThatThrownBy(() -> new Renavam("12345678901"))
                 .isInstanceOf(DomainValidationException.class)
                 .hasMessageContaining("dígito verificador inválido");
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"   "})
+    void rejectsMissingRenavamPointingToTheField(String input) {
+        // a API usa o campo para devolver o erro no lugar certo do formulário
+        assertThatThrownBy(() -> new Renavam(input))
+                .isInstanceOfSatisfying(
+                        DomainValidationException.class,
+                        e -> assertThat(e.field()).isEqualTo("renavam"))
+                .hasMessage("O RENAVAM é obrigatório.");
     }
 
     @ParameterizedTest
