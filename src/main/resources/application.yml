@@ -10,6 +10,21 @@ spring:
     problemdetails:
       enabled: true
 
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/geotrack}
+    username: ${DB_USERNAME:geotrack}
+    password: ${DB_PASSWORD:geotrack}
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate # o schema é responsabilidade do Liquibase
+
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+    # "main" = schema; "dev" = dados de exemplo (usuários admin/viewer). Nunca habilite "dev" em produção.
+    contexts: ${LIQUIBASE_CONTEXTS:main}
+
 management:
   endpoints:
     web:
@@ -27,18 +42,3 @@ info:
   app:
     name: ${spring.application.name}
     description: Cadastro de veículos e rastreamento de posições GPS
-
-  datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/geotrack}
-    username: ${DB_USERNAME:geotrack}
-    password: ${DB_PASSWORD:geotrack}
-
-  jpa:
-    open-in-view: false
-    hibernate:
-      ddl-auto: validate # o schema é responsabilidade do Liquibase
-
-  liquibase:
-    change-log: classpath:db/changelog/db.changelog-master.yaml
-    # "main" = schema; "dev" = dados de exemplo (usuários admin/viewer). Nunca habilite "dev" em produção.
-    contexts: ${LIQUIBASE_CONTEXTS:main}
